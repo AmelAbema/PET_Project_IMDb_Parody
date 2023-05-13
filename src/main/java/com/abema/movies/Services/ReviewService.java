@@ -3,6 +3,7 @@ package com.abema.movies.Services;
 import com.abema.movies.Models.Movie;
 import com.abema.movies.Models.Review;
 import com.abema.movies.Repos.ReviewRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -10,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class ReviewService {
@@ -27,6 +29,10 @@ public class ReviewService {
                 .first();
 
         return review;
+    }
+
+    public Optional<Review> getReview(ObjectId id){
+        return repository.findById(id);
     }
 
 }
